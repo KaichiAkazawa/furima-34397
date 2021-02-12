@@ -24,8 +24,8 @@
 | ----------------------- | ---------- | ------------------------------ |
 | name                    | string     | null: false                    |
 | description             | text       | null: false                    |
-| category                | string     | null: false                    |
-| state_id                | string     | null: false                    |
+| category_id             | integer    | null: false                    |
+| state_id                | integer    | null: false                    |
 | shipping_cost_payer_id  | integer    | null: false                    |
 | prefecture_id           | integer    | null: false                    |
 | shipping_day_id         | integer    | null: false                    |
