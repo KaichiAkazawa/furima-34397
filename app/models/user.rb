@@ -5,13 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   #半角英数字での入力必須
-  PASSWORD_REGEX =  /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   #全角ひらがなカタカナ漢字での入力必須
-  NAME_REGEX =      /\A[ぁ-んァ-ヶ一-龥々]+\z/.freeze
+  NAME_REGEX = /\A[ぁ-んァ-ヶ一-龥々]+\z/.freeze
   #全角カタカナでの入力必須
   NAME_RUBY_REGEX = /\A[ァ-ヶー－]+\z/.freeze
 
-  validates :encrypted_password, format: { with: PASSWORD_REGEX, message: "Include both letters and numbers" }
+  validates :password, format: { with: PASSWORD_REGEX, message: "Include both letters and numbers" }
   validates :nickname, presence: true
   validates :last_name, presence: true, format: { with: NAME_REGEX, message: "Full-width characters" }
   validates :first_name, presence: true, format: { with: NAME_REGEX, message: "Full-width characters" }
