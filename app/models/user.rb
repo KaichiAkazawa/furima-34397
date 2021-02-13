@@ -14,10 +14,14 @@ class User < ApplicationRecord
   validates :password, format: { with: PASSWORD_REGEX, message: 'Include both letters and numbers' }
   with_options presence: true do
     validates :nickname
-    validates :last_name, format: { with: NAME_REGEX, message: 'Full-width characters' }
-    validates :first_name, format: { with: NAME_REGEX, message: 'Full-width characters' }
-    validates :last_name_ruby, format: { with: NAME_RUBY_REGEX, message: 'Full-width katakana characters' }
-    validates :first_name_ruby, format: { with: NAME_RUBY_REGEX, message: 'Full-width katakana characters' }
+    with_options format: { with: NAME_REGEX, message: 'Full-width characters' } do
+      validates :last_name
+      validates :first_name
+    end
+    with_options format: { with: NAME_RUBY_REGEX, message: 'Full-width katakana characters' } do
+      validates :last_name_ruby
+      validates :first_name_ruby
+    end
     validates :birth_day
   end
 end
