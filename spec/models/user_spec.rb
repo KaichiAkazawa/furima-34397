@@ -36,6 +36,11 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include('Password Include both letters and numbers')
     end
+    it 'passwordが半角でないと登録できない' do
+      @user.password = '123あああ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password Include both letters and numbers')
+    end
     it 'passwordが6文字以上でないと登録できない' do
       @user.password = '123aa'
       @user.valid?
