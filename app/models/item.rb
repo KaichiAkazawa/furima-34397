@@ -4,8 +4,9 @@ class Item < ApplicationRecord
   belongs_to :state
   belongs_to :shipping_cost_payer
   belongs_to :prefecture
-  belomgs_to :shipping_day
-  belomgs_to :user
+  belongs_to :shipping_day
+  belongs_to :user
+  has_one_attached :image
 
   with_options presence: true do
     validates :image
