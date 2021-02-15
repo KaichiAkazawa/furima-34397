@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :item do
-    image                  {  }
+    image                  {}
     name                   { Faker::Name.name }
     description            { Faker::Lorem.sentence }
     category_id            { rand(2..11) }
@@ -8,7 +8,7 @@ FactoryBot.define do
     shipping_cost_payer_id { rand(2..3) }
     prefecture_id          { rand(2..48) }
     shipping_day_id        { rand(2..4) }
-    price                  { rand(300..9999999) }
+    price                  { rand(300..9_999_999) }
     association :user
   end
 end
