@@ -26,6 +26,9 @@ class ItemsController < ApplicationController
   def edit
   end
 
+  def destroy
+  end
+
   def update
     @item.update(item_params)
     if @item.save
