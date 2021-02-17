@@ -48,7 +48,7 @@
 - belongs_to :item
 - has_one :address
 
-## addressesテーブル
+## ordersテーブル
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
