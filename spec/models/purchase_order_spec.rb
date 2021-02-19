@@ -3,11 +3,18 @@ require 'rails_helper'
 RSpec.describe PurchaseOrder, type: :model do
   before do
     user = FactoryBot.create(:user)
-    item = FactoryBot.build(:item)
-    item.image = fixture_file_upload('app/assets/images/sample1.png')
+    item = FactoryBot.create(:item)
     @purchase_order = FactoryBot.build(:purchase_order, user_id: user.id, item_id: item.id)
+    sleep(0.1) #MySQLエラー回避のためインスタンス生成後0.1秒待機してからテスト実行
   end
-  describe '商品購入' do
+
+  describe '商品が購入できる' do
+    it '正しい情報を入力すれば購入できる' do
+      expect(@purchase_order).to be_valid
+    end
+  end
+
+  describe '商品購入が購入できない' do
     it '郵便番号が空では購入できない' do
       @purchase_order.postal_code = ''
       @purchase_order.valid?
@@ -62,10 +69,28 @@ RSpec.describe PurchaseOrder, type: :model do
       expect(@purchase_order.errors.full_messages).to include('Phone number Input only number')
     end
 
+    it '電話番号が12桁以上だと購入できない' do
+      @purchase_order.phone_number = '012345678910'
+      @purchase_order.valid?
+      expect(@purchase_order.errors.full_messages).to include('Phone number Input only number')
+    end
+
     it 'トークンが空では購入できない' do
       @purchase_order.token = ''
       @purchase_order.valid?
       expect(@purchase_order.errors.full_messages).to include("Token can't be blank")
+    end
+
+    it 'user_idが空では登録できない' do
+      @purchase_order.user_id = nil
+      @purchase_order.valid?
+      expect(@purchase_order.errors.full_messages).to include("User can't be blank")
+    end
+
+    it 'item_idが空では登録できない' do
+      @purchase_order.item_id = nil
+      @purchase_order.valid?
+      expect(@purchase_order.errors.full_messages).to include("Item can't be blank")
     end
   end
 end
