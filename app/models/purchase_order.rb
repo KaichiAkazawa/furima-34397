@@ -1,6 +1,6 @@
 class PurchaseOrder
   include ActiveModel::Model
-  attr_accessor :postal_code, :prefecture_id, :city, :address_number, :building_name, :phone_number, :token, :purchase_id,
+  attr_accessor :postal_code, :prefecture_id, :city, :address_number, :building_name, :phone_number, :token,
                 :user_id, :item_id
 
   POSTAL_CODE_REGEX = /\A\d{3}-\d{4}\z/.freeze
