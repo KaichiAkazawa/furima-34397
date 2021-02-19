@@ -46,9 +46,9 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :address
+- has_one :order
 
-## addressesテーブル
+## ordersテーブル
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
