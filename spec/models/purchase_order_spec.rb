@@ -12,6 +12,11 @@ RSpec.describe PurchaseOrder, type: :model do
     it '正しい情報を入力すれば購入できる' do
       expect(@purchase_order).to be_valid
     end
+
+    it '建物名を入力しなくても購入できる' do
+      @purchase_order.building_name = ""
+      expect(@purchase_order).to be_valid
+    end
   end
 
   describe '商品購入が購入できない' do
